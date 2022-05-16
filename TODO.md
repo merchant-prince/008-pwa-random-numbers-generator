@@ -9,9 +9,9 @@
 
 - [x] Clean & Configure
 
-- [ ] Testing tools:
+- [x] Testing tools:
 
-  - [ ] Cypress (e2e)
+  - [x] Cypress (e2e)
 
 - [ ] Develop (TDD)
 
