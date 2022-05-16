@@ -29,6 +29,23 @@ describe("Application", () => {
     });
   });
 
+  it("generates unique random numbers", () => {
+    const randomNumbers: number[] = [];
+
+    [...Array(6).keys()].forEach((index) => {
+      cy.get(`[data-test="random-number-${index}"]`)
+        .invoke("text")
+        .then((value) => {
+          expect(
+            randomNumbers.includes(parseInt(value)),
+            "Duplicate random numbers generated"
+          ).to.be.false;
+
+          randomNumbers.push(parseInt(value));
+        });
+    });
+  });
+
   it("can change the number of random numbers generated", () => {
     cy.visit("/");
 
@@ -42,8 +59,8 @@ describe("Application", () => {
   it("can change the random-numbers' range", () => {
     cy.visit("/");
 
-    cy.get('[data-test="minimum-number"]').type("{selectAll} 101");
-    cy.get('[data-test="maximum-number"]').type("{selectAll} 1001");
+    cy.get('[data-test="minimum-number"]').type("{selectAll}101");
+    cy.get('[data-test="maximum-number"]').type("{selectAll}1001");
 
     [...Array(6).keys()].forEach((index) => {
       cy.get(`[data-test="random-number-${index}"]`)
@@ -55,12 +72,13 @@ describe("Application", () => {
   it("can regenerate the random numbers", () => {
     cy.visit("/");
 
-    const randomNumbers: number[] = [];
+    const initialRandomNumbers: number[] = [];
+    const regeneratedRandomNumbers: number[] = [];
 
     [...Array(6).keys()].forEach((index) => {
       cy.get(`[data-test="random-number-${index}"]`)
         .invoke("text")
-        .then((value) => randomNumbers.push(parseInt(value)));
+        .then((value) => initialRandomNumbers.push(parseInt(value)));
     });
 
     cy.get('[data-test="regenerate-random-numbers"]').click();
@@ -68,9 +86,14 @@ describe("Application", () => {
     [...Array(6).keys()].forEach((index) => {
       cy.get(`[data-test="random-number-${index}"]`)
         .invoke("text")
-        .then((value) =>
-          expect(parseInt(value)).not.to.be.equal(randomNumbers[index])
-        );
+        .then((value) => regeneratedRandomNumbers.push(parseInt(value)));
     });
+
+    expect(
+      initialRandomNumbers.some(
+        (initialRandomNumber, index) =>
+          initialRandomNumber !== regeneratedRandomNumbers[index]
+      )
+    );
   });
 });

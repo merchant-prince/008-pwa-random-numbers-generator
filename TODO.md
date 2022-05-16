@@ -15,9 +15,9 @@
 
 - [x] Develop (TDD)
 
-- [ ] Design:
+- [x] Design:
 
-  - [ ] TailwindCSS
+  - [x] TailwindCSS
 
 - [ ] PWA:
 
