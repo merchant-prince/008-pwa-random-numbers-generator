@@ -7,7 +7,7 @@
   - [x] husky
   - [x] lint-staged
 
-- [ ] Clean & Configure
+- [x] Clean & Configure
 
 - [ ] Testing tools:
 
