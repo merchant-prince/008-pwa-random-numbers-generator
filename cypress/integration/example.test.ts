@@ -18,4 +18,14 @@ describe("Application", () => {
 
     cy.get('[data-test="regenerate-random-numbers"]').should("be.visible");
   });
+
+  it("can change the number of random numbers generated", () => {
+    cy.visit("/");
+
+    cy.get('[data-test="number-count"]').type("{selectAll}10");
+
+    [...Array(10).keys()].forEach((index) => {
+      cy.get(`[data-test="random-number-${index}"]`).should("be.visible");
+    });
+  });
 });
