@@ -28,4 +28,17 @@ describe("Application", () => {
       cy.get(`[data-test="random-number-${index}"]`).should("be.visible");
     });
   });
+
+  it("can change the random-numbers' range", () => {
+    cy.visit("/");
+
+    cy.get('[data-test="minimum-number"]').type("{selectAll} 101");
+    cy.get('[data-test="maximum-number"]').type("{selectAll} 1001");
+
+    [...Array(6).keys()].forEach((index) => {
+      cy.get(`[data-test="random-number-${index}"]`)
+        .invoke("text")
+        .then((value) => expect(parseInt(value)).to.be.gte(101).and.lte(1001));
+    });
+  });
 });
