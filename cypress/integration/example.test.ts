@@ -19,6 +19,16 @@ describe("Application", () => {
     cy.get('[data-test="regenerate-random-numbers"]').should("be.visible");
   });
 
+  it("can generate random numbers", () => {
+    cy.visit("/");
+
+    [...Array(6).keys()].forEach((index) => {
+      cy.get(`[data-test="random-number-${index}"]`)
+        .invoke("text")
+        .then((value) => expect(parseInt(value)).to.be.gte(1).and.lte(40));
+    });
+  });
+
   it("can change the number of random numbers generated", () => {
     cy.visit("/");
 
