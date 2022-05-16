@@ -13,13 +13,17 @@ const generateRandomNumberBetween = (minimum: number, maximum: number) => {
   return Math.floor(Math.random() * (maximum - minimum + 1) + minimum);
 };
 
-const randomNumbers = computed(() =>
-  new Array(numberCount.value)
+const regenerationSwitch = ref(true);
+
+const randomNumbers = computed(() => {
+  regenerationSwitch.value;
+
+  return new Array(numberCount.value)
     .fill(undefined)
     .map(() =>
       generateRandomNumberBetween(minimumNumber.value, maximumNumber.value)
-    )
-);
+    );
+});
 </script>
 
 <template>
@@ -50,7 +54,12 @@ const randomNumbers = computed(() =>
         type="number"
         data-test="number-count"
       />
-      <button data-test="regenerate-random-numbers">regenerate</button>
+      <button
+        data-test="regenerate-random-numbers"
+        @click="regenerationSwitch = !regenerationSwitch"
+      >
+        regenerate
+      </button>
     </section>
   </main>
 </template>

@@ -51,4 +51,26 @@ describe("Application", () => {
         .then((value) => expect(parseInt(value)).to.be.gte(101).and.lte(1001));
     });
   });
+
+  it("can regenerate the random numbers", () => {
+    cy.visit("/");
+
+    const randomNumbers: number[] = [];
+
+    [...Array(6).keys()].forEach((index) => {
+      cy.get(`[data-test="random-number-${index}"]`)
+        .invoke("text")
+        .then((value) => randomNumbers.push(parseInt(value)));
+    });
+
+    cy.get('[data-test="regenerate-random-numbers"]').click();
+
+    [...Array(6).keys()].forEach((index) => {
+      cy.get(`[data-test="random-number-${index}"]`)
+        .invoke("text")
+        .then((value) =>
+          expect(parseInt(value)).not.to.be.equal(randomNumbers[index])
+        );
+    });
+  });
 });
