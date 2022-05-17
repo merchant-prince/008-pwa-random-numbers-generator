@@ -45,7 +45,12 @@ const regenerateRandomNumbers = () => {
       data-test="random-numbers"
     >
       <div
-        class="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12 gap-2"
+        class="grid grid-cols-6 gap-2"
+        :class="{
+          'sm:grid-cols-8': numberCount > 6,
+          'md:grid-cols-10': numberCount > 8,
+          'lg:grid-cols-12': numberCount > 10,
+        }"
       >
         <section
           v-for="(randomNumber, index) in randomNumbers"

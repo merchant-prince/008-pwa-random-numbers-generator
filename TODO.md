@@ -19,10 +19,10 @@
 
   - [x] TailwindCSS
 
-- [ ] PWA:
+- [x] PWA:
 
-  - [ ] vite-plugin-pwa
-  - [ ] Configure (install, sw, etc...)
+  - [x] vite-plugin-pwa
+  - [x] Configure (install, sw, etc...)
 
 - [ ] Refactor
 
