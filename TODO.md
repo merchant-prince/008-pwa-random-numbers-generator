@@ -26,4 +26,4 @@
 
 - [x] Refactor
 
-- [ ] Deploy
+- [x] Deploy
