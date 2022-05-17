@@ -101,9 +101,9 @@ const regenerateRandomNumbers = () => {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-6 w-6 -scale-x-100 text-secondary-800 cursor-pointer"
-          :class="
-            isRotating ? 'transition duration-500 rotate-180 text-blue-800' : ''
-          "
+          :class="{
+            'transition duration-500 rotate-180 text-blue-800': isRotating,
+          }"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"

@@ -24,6 +24,6 @@
   - [x] vite-plugin-pwa
   - [x] Configure (install, sw, etc...)
 
-- [ ] Refactor
+- [x] Refactor
 
 - [ ] Deploy
